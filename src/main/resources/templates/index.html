@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>game review</title>
+    <link rel="stylesheet" type="text/css" href="CSS/style.css">
+    <link rel="stylesheet" type="text/css" href="CSS/layer.css">
+    <script src="https://kit.fontawesome.com/bc7b2871bd.js" crossorigin="anonymous"></script>
+    <script src="JS/main.js" defer></script>
+    <script src="JS/layer.js" defer></script>
+    <style>
+   
+        *{margin: 0;padding: 0; box-sizing: border-box;}
+        html,body{
+            height: 100%;
+        }
+        
+        body{
+            background-color: rgb(27, 40, 56);
+        }
+        #clear{
+        clear: both;
+        }
+        td{
+        text-align: center;
+        }
+        p.title{
+            font-size: 35px; font-weight: bold;
+            height:46px; width: 220px;
+        }
+        .title > a{
+        	color: rgb(197,195,192);
+       		text-decoration: none;
+        }
+        a.write{
+            color: rgb(197,195,192);
+            text-decoration: none;
+            font-size:20px;
+        }
+        table{
+        float:left;
+        }
+       
+    </style>
+</head>
+<body>
+    <header style="background-color: rgb(23, 26, 33);">
+        <table style="padding-top: 20px;padding-bottom: 20px; width:100%;">
+            <tr>
+                <td style="width: 10%;"></td>
+                <td style="width: 30%;"><p class="title"><a href="index.html">game review</a></p></td>
+                <td style="width: 30%;"></td>
+                <td style="width: 72px;"><a href="#">sign up</a></td>
+                <td style="width: 15%">
+                	<a href="#layer2" class="btn-example">LOGIN</a>
+						<div class="dim-layer">
+    						<div class="dimBg"></div>
+    					<div id="layer2" class="pop-layer">
+        					<div class="pop-container">
+            					<div class="pop-conts">
+                					<!--content //-->
+                					<table class="ctxt">
+                					<tr>
+                					<td class="id">아이디 : </td>
+                					<td><input type="text"></td>
+                					<td rowspan="2" class="btn-l">
+                							<a href="#" class="btn-layerlogin">login</a>
+                						</td>
+                					</tr>
+                					<tr>
+                					<td class="pass">패스워드 : </td>
+                					<td><input type="password"></td>
+                					</tr>
+                					</table>
+               						<div class="btn-r">
+                    					<a href="#" class="btn-layerClose">Close</a>
+                					</div>
+               						<!--// content-->
+           					 	</div>
+        					</div>
+    					</div>
+						</div>
+					</td>
+                <td style="width: 5%;"></td>
+            </tr>
+        </table>
+        <div id="clear"></div>
+    </header>
+    
+    <nav class="navbar">
+
+      <ul class="navbar__menu">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li><a href="#">Weddings</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+
+      <ul class="navbar__icons">
+        <li><input class="search_input" type="text" placeholder="search">
+        <a href="#"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></a></li>
+      </ul>
+      
+      <a href="#" class="navbar__toggleBtn">
+        <i class="fas fa-hamburger"></i>
+      </a>
+    </nav>
+<section>
+    <div class="container">
+    	<ul class="slider-container simple-list" id="slider">
+    		<li class="slide"><img src="img/cat3.png"></li>
+    		<li class="slide"><img src="img/cat2.png"></li>
+    		<li class="slide"><img src="img/cat1.png"></li>
+    	</ul>
+    	<a href="#" id=prev><i class="fa-solid fa-angle-left"></i></a>
+    	<a href="#" id=next><i class="fa-solid fa-angle-right"></i></a>
+    </div>
+    <div class="freeboard">
+    <table class="freeboard-table">
+    <tr>
+    <td>자유 게시판</td>
+    </tr>
+    </table>
+    </div>
+</section>
+<aside>
+
+</aside>
+</body>
+</html>
