@@ -28,7 +28,7 @@ public class Question {
 	//컬럼의 세부 설정을 위해 @Column 애너테이션을 사용한다
 	//length 는 컬럼의 길이를 설정할때
 	@Column(length = 200) 
-	private String subjec;
+	private String subject;
 	//columnDefinition 속성을 정의할 때 사용한다.
 	//columnDefinition = "TEXT"은 "내용"처럼 글자 수를 제한할 수 없는 경우에 사용한다.
 	@Column(columnDefinition = "TEXT")
