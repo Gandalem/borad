@@ -35,4 +35,9 @@ public class QuestionController {
 		return "gmdetail.html";
 	}
 	
+	@GetMapping(value = "/user/signup")
+	public String signup() {
+		return "gmsignup";
+	}
+	
 }
