@@ -1,4 +1,4 @@
-package com.gmreview.my.question;
+package com.gmreview.my.controller;
 
 import java.util.List;
 
@@ -6,6 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import com.gmreview.my.entuty.Question;
+import com.gmreview.my.service.QuestionService;
 
 import lombok.RequiredArgsConstructor;
 

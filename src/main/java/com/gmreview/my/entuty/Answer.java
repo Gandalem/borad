@@ -1,8 +1,6 @@
-package com.gmreview.my.answer;
+package com.gmreview.my.entuty;
 
 import java.time.LocalDateTime;
-
-import com.gmreview.my.question.Question;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

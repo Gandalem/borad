@@ -1,8 +1,10 @@
-package com.gmreview.my.question;
+package com.gmreview.my.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.gmreview.my.entuty.Question;
 
 public interface QuestionRepository extends JpaRepository<Question,Integer> {
 	

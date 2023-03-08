@@ -19,6 +19,7 @@ repositories {
 }
 
 dependencies {
+ 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.5.4'
 	//spring web
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	//lombok
@@ -35,6 +36,10 @@ dependencies {
 	//타임리프
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
  	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+ 	//spring security 라이브러리
+   implementation 'org.springframework.boot:spring-boot-starter-security'
+   testImplementation 'org.springframework.security:spring-security-test'
+ 	
 }
 
 tasks.named('test') {

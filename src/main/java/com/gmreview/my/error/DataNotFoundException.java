@@ -1,4 +1,4 @@
-package com.gmreview.my;
+package com.gmreview.my.error;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

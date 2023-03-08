@@ -5,11 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>game review</title>
-    <link rel="stylesheet" type="text/css" href="CSS/style.css">
-    <link rel="stylesheet" type="text/css" href="CSS/layer.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/layer.css">
     <script src="https://kit.fontawesome.com/bc7b2871bd.js" crossorigin="anonymous"></script>
-    <script src="JS/main.js" defer></script>
-    <script src="JS/layer.js" defer></script>
+    
     <style>
    
         *{margin: 0;padding: 0; box-sizing: border-box;}
@@ -52,7 +51,7 @@
                 <td style="width: 10%;"></td>
                 <td style="width: 30%;"><p class="title"><a th:href="@{/}">game review</a></p></td>
                 <td style="width: 30%;"></td>
-                <td style="width: 72px;"><a href="#">sign up</a></td>
+                <td style="width: 72px;"><a th:href="@{/sign}">sign up</a></td>
                 <td style="width: 15%">
                 	<a href="#layer2" class="btn-example">LOGIN</a>
 						<div class="dim-layer">
@@ -128,5 +127,7 @@
 <aside>
 
 </aside>
+	<script src="js/main.js"></script>
+    <script src="js/layer.js"></script>
 </body>
 </html>

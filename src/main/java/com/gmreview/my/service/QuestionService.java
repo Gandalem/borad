@@ -1,11 +1,13 @@
-package com.gmreview.my.question;
+package com.gmreview.my.service;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.gmreview.my.DataNotFoundException;
+import com.gmreview.my.entuty.Question;
+import com.gmreview.my.error.DataNotFoundException;
+import com.gmreview.my.repository.QuestionRepository;
 
 import lombok.RequiredArgsConstructor;
 

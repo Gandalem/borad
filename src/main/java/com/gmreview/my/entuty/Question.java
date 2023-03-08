@@ -1,9 +1,7 @@
-package com.gmreview.my.question;
+package com.gmreview.my.entuty;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
-import com.gmreview.my.answer.Answer;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
