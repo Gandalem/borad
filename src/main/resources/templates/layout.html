@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <!-- 반응형 작동시킬려면 meta태그에 viewport가 있어야한다. -->
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0 ,shrink-to-fit=no">
-<!-- 부트스트랩 CSS 임폴트 -->
-<link rel="stylesheet" type="text/css" th:href="@{/CSS/bootstrap.min.css}">
 
+<script src="https://kit.fontawesome.com/bc7b2871bd.js" crossorigin="anonymous"></script>
 <!-- sbb CSS -->
- <link rel="stylesheet" type="text/css" th:href="@{/CSS/bootstyle.css}">
+ <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
  
- <link rel="stylesheet" type="text/css" th:href="@{/CSS/layer.css}">
+ <link rel="stylesheet" type="text/css" th:href="@{/css/layer.css}">
 
 <title>템플릿 html(view 페이지생성시 기본적용)</title>
 </head>
@@ -21,19 +21,20 @@
 	<!-- 최상단의 네비게이션 바 -->
 	<!-- 외부의 navbar.html import -->
 	
-	<nav th:replace="~{navbar :: navbarFragment}"></nav>
+	<nav th:replace="~{fragment/header :: header1}"></nav>
 	
-	<nav th:replace="~{navbar2 :: navbar1}"></nav>
+	<nav th:replace="~{fragment/navbar :: navbar1}"></nav>
 	
 	
 	
 	<!-- 기본 템플릿에 삽입될 내용 Start-->
-	<th:blobk layout:fragment="content"></th:blobk>
+	<body layout:fragment="content"></body>
 	<!-- 기본 탬플릿에 삽입될 내용 -END -->
 	
 	<!-- 부트 스트랩 자바 스크립트 import -->
-	<script th:src="@{/JS/bootstrap.min.js}"></script>
-	<script th:src="@{/JS/layer.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+	<script th:src="@{/js/layer.js}"></script>
+	
 	
 	<th:block layout:fragment="script"></th:block>
 </body>

@@ -1,0 +1,57 @@
+<!-- 최상단의 네비게이션 바(Nav Bar) -->
+<nav th:fragment="header1">
+	<header  style="background-color: rgb(23, 26, 33);">
+       <table style="padding-top: 20px;padding-bottom: 20px; width:100%;">
+            <tr>
+                <td style="width: 10%;"></td>
+                <td style="width: 30%;"><p class="title"><a th:href="@{/}">game review</a></p></td>
+                <td style="width: 30%;"></td>
+                <td style="width: 72px;"><a th:href="@{/sign}">sign up</a></td>
+                <td style="width: 15%">
+                <p th:if="${loginErrorMsg}" class="error" th:text="${loginErrorMsg}"></p>
+                <span sec:authorize="isAnonymous()">
+                	<a href="#layer2" class="btn-example">LOGIN</a>
+                </span>
+						<div class="dim-layer">
+    						<div class="dimBg"></div>
+    					<div id="layer2" class="pop-layer">
+        					<div class="pop-container">
+            					<div class="pop-conts">
+                					<!-- login -->
+                				<form role="form" method="post" action="/login">
+                					<table class="ctxt">
+                					<tr>
+                					<td class="id">아이디 : </td>
+                					<td><input type="email" name="email" placeholder="이메일을 입력해주세요"></td>
+                					
+                					<td rowspan="2" class="btn-l">
+                							<button class="btn-layerlogin">login</button>
+                						</td>
+                					</tr>
+                					<tr>
+                					<td class="pass">패스워드 : </td>
+                					<td><input type="password" name="password" placeholder="패스워드을 입력해주세요"></td>
+                					</tr>
+                					</table>
+                					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                				</form>
+               						<div class="btn-r">
+                    					<a href="#" class="btn-layerClose">Close</a>
+                					</div>
+               						<!-- login -->
+           					 	</div>
+        					</div>
+    					</div>
+						</div>
+						<span sec:authorize="isAuthenticated()">
+                   			<a href="/logout">로그아웃</a>
+                		</span>
+					</td>
+                <td style="width: 5%;"></td>
+            </tr>
+        </table>
+        <div id="clear"></div>
+    </header>
+</nav>
+	
+	

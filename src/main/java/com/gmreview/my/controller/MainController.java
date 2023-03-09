@@ -12,9 +12,4 @@ public class MainController {
 		return "index.html";
 	}
 	
-	@GetMapping("/sign")
-	public String msign_up(){
-		return "gmsignup.html";
-	}
-
 }

@@ -63,7 +63,7 @@
   display: block;
 }
 
-a.btn-layerlogin {
+.btn-layerlogin {
   display: inline-block;
   height: 50px;
   padding: 0 14px 0;
@@ -74,7 +74,7 @@ a.btn-layerlogin {
   line-height: 45px;
 }
 
-a.btn-layerlogin:hover {
+.btn-layerlogin:hover {
   border: 1px solid #091940;
   background-color: #1f326a;
   color: #fff;

@@ -1,5 +1,38 @@
 @charset "UTF-8";
 
+*{margin: 0;padding: 0; box-sizing: border-box;}
+        html,body{
+            height: 100%;
+        }
+        
+        body{
+            background-color: rgb(27, 40, 56);
+        }
+        #clear{
+        clear: both;
+        }
+        td{
+        text-align: center;
+        }
+
+p.title{
+            font-size: 35px; font-weight: bold;
+            height:46px; width: 220px;
+        }
+.title > a{
+        	color: rgb(197,195,192);
+       		text-decoration: none;
+        }
+a.write{
+            color: rgb(197,195,192);
+            text-decoration: none;
+            font-size:20px;
+        }
+table{
+	float:left;
+	}
+       
+
  .navbar {
   	display: flex;
   	justify-content: space-between;

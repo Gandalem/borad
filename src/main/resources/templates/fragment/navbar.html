@@ -1,0 +1,20 @@
+<div th:fragment="navbar1">
+	<nav class="navbar">
+
+      <ul class="navbar__menu">
+        <li><a href="#">Home</a></li>
+        <li><a th:href="@{/list}">게시판</a></li>
+        <li><a href="#">Weddings</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+
+      <ul class="navbar__icons">
+        <li><input class="search_input" type="text" placeholder="search">
+        <a href="#"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></a></li>
+      </ul>
+      
+      <a href="#" class="navbar__toggleBtn">
+        <i class="fas fa-hamburger"></i>
+      </a>
+    </nav>
+</div>
