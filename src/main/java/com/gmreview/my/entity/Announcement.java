@@ -1,6 +1,7 @@
-package com.gmreview.my.entuty;
+package com.gmreview.my.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -9,14 +10,17 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
-public class Question {
+public class Announcement {
 	
 	@Id //기본 키로 지정하면 이제 id 속성의 값은 데이터베이스에 저장할 때 동일한 값으로 저장할 수 없다.
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //strategy 는 고유번호를 생성하는 옵션 
@@ -25,10 +29,12 @@ public class Question {
 	
 	//컬럼의 세부 설정을 위해 @Column 애너테이션을 사용한다
 	//length 는 컬럼의 길이를 설정할때
+	//게임제목
 	@Column(length = 200) 
 	private String subject;
 	//columnDefinition 속성을 정의할 때 사용한다.
 	//columnDefinition = "TEXT"은 "내용"처럼 글자 수를 제한할 수 없는 경우에 사용한다.
+	//게임의 대한 설명
 	@Column(columnDefinition = "TEXT")
 	private String content;
 	
@@ -38,14 +44,24 @@ public class Question {
 	 */
 	private LocalDateTime createDate;
 	
-	@OneToMany(mappedBy = "question",cascade = CascadeType.REMOVE)
+	@ManyToOne
+	private Members members;
+	
+	
+//	@OneToMany(mappedBy = "gmboard",cascade = CascadeType.REMOVE)
 	//mappedBy 는 참조 엔티티의 속성명을 의미한다.
 	//Answer 엔티티에서 Question 엔티티를 참조한 속성명 question 을 mappedBy에 전달해야 한다.
 	
 	//CascadeType.REMOVE 
 	//질문 하나에는 여러개의 답변이 작성될 수 있다. 이때 질문을 삭제하면 그에 달린 답변들도 모두
 	//함께 삭제하기 위해서 @OneToMany 의 속성으로 cascade = CascadeType.REMOVE 를 사용했다
-	private List<Answer> answer;
+//	private List<Review> reviews;
+	
+	
+	//Review 에 있는 점수를 가져와서 저장
+//	@OneToMany
+//	@JoinColumn(name="score")
+//	private List<Review> totalscore = new ArrayList<>(); 
 	
 }
 

@@ -1,4 +1,4 @@
-package com.gmreview.my.entuty;
+package com.gmreview.my.entity;
 
 import lombok.Getter;
 import lombok.Setter;

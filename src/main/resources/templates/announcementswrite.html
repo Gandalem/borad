@@ -1,0 +1,18 @@
+<html layout:decorate="~{layout}">
+
+<body layout:fragment="content">
+	<form th:action="@{/admin/announcements/save}" method="post">
+		<div class="container">
+			<h2>공지사항</h2>
+			<div>
+				<label>제목 : </label> <input type="text" name="subject">
+			</div>
+			<div>
+				<label>내용 :</label> <textarea name="content" rows="20" cols="50"></textarea>
+			</div>
+			<button type="submit">완료</button>
+		</div>
+	</form>
+
+</body>
+</html>

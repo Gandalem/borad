@@ -6,15 +6,22 @@
                 <td style="width: 10%;"></td>
                 <td style="width: 30%;"><p class="title"><a th:href="@{/}">game review</a></p></td>
                 <td style="width: 30%;"></td>
-                <td style="width: 72px;"><a th:href="@{/sign}">sign up</a></td>
+                <td style="width: 72px;">
+                <span sec:authorize="isAnonymous()">
+                <a th:href="@{/sign}">회원가입</a>
+                </span>
+                <span sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+    					<a th:href="@{/admin/announcementswrite}">공지사항 작성</a>
+					</span> 
+                </td>
                 <td style="width: 15%">
                 <p th:if="${loginErrorMsg}" class="error" th:text="${loginErrorMsg}"></p>
                 <span sec:authorize="isAnonymous()">
-                	<a href="#layer2" class="btn-example">LOGIN</a>
+                	<a href="#login" class="btn-example">LOGIN</a>
                 </span>
 						<div class="dim-layer">
     						<div class="dimBg"></div>
-    					<div id="layer2" class="pop-layer">
+    					<div id="login" class="pop-layer">
         					<div class="pop-container">
             					<div class="pop-conts">
                 					<!-- login -->

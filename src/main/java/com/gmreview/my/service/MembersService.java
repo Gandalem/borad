@@ -1,12 +1,16 @@
 package com.gmreview.my.service;
 
+import java.util.Optional;
+
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gmreview.my.entuty.Members;
+import com.gmreview.my.DateNotFoundExceptoin;
+import com.gmreview.my.entity.Members;
 import com.gmreview.my.repository.MembersRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -14,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Transactional
 @Service
-public class MembersService {
+public class MembersService implements UserDetailsService{
 	
 	private final MembersRepository membersRepository;
 	
@@ -30,7 +34,7 @@ public class MembersService {
         }
     }
     
-    
+    @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
         Members member = membersRepository.findByEmail(email);
@@ -53,5 +57,16 @@ public class MembersService {
                 .roles(member.getRole().toString())
                 .build();
     }
+    
+public Members getName(String member) {
+		
+		Members members = this.membersRepository.findByEmail(member);
+		
+		if(members!=null) {
+			return members;
+		}else {
+			throw new DateNotFoundExceptoin("member not found");
+		}
+	}
 	
 }

@@ -1,4 +1,4 @@
-package com.gmreview.my.entuty;
+package com.gmreview.my.entity;
 
 import java.time.LocalDateTime;
 
@@ -13,12 +13,16 @@ import lombok.Setter;
 @Getter
 @Setter //setter은 보안성의 취약하다 원래는 lombok의 builder 를 사용한다.
 @Entity
-public class Answer {
+public class Review {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	//게임에 평점
+	private Integer score;
+	
+	//유저들이 남기는 게임리뷰
 	private String content;
 	
 	//카멜케이스 createDate => create_date 로 DB의 저장된다
@@ -32,5 +36,5 @@ public class Answer {
 	(실제 데이터베이스에서는 ForeignKey 관계가 생성된다.)
 	역으로 Question 에서 Answer 을 참조하기 위해서는 @OneToMany 어노테이션을 사용한다.
 	 */
-	private Question question;
+	private Announcement gmboard;
 }

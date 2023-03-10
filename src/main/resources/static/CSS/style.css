@@ -157,12 +157,7 @@ i.fa-angle-left{
 i.fa-angle-right{
 	padding: 30px 0 0 30px;
 }
-.freeboard{
-	border: 1px black solid;
-}
-.freeboard-table{
-	border: 1px black solid;
-}
+
 
 @media screen and (max-width:730px){
 	.title{

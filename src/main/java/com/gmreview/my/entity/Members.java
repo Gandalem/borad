@@ -1,4 +1,4 @@
-package com.gmreview.my.entuty;
+package com.gmreview.my.entity;
 
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -47,7 +47,7 @@ public class Members extends BaseEntity  {
         member.setAddress(memberFormDto.getAddress());
         String password = passwordEncoder.encode(memberFormDto.getPassword());
         member.setPassword(password);
-        member.setRole(Role.User);
+        member.setRole(Role.USER);
         return member;
 	}
 	

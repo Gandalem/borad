@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.gmreview.my.dto.MemberFormDto;
-import com.gmreview.my.entuty.Members;
+import com.gmreview.my.entity.Members;
 import com.gmreview.my.service.MembersService;
 
 import jakarta.validation.Valid;
