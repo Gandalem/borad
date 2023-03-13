@@ -17,11 +17,10 @@
 			<tr>
 				<td>공지사항</td>
     		</tr>
-			<tr th:each="announcements, 5 : ${announcements}">
+			<tr th:each="announcements, loop : ${announcements}">
 				<!--
 			<td th:text="${paging.getTotalElements -(paging.number*paging.size)-loop.index}">번호</td>
 			-->
-			<td th:text="${announcements.id}"></td>
 			<td><a th:href="@{|detail/${announcements.id}|}"
 					th:text="${announcements.subject}">제목
 				</a>

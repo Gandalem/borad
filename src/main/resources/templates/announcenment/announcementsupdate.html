@@ -1,0 +1,19 @@
+<html layout:decorate="~{layout}">
+
+<body layout:fragment="content">
+	<form th:action="@{/admin/announcements/update}" method="post">
+		<div class="container">
+			<h2>공지사항</h2>
+			<div>
+				<label>제목 : </label> <input type="text" name="subject" th:value="${announcement.subject}">
+			</div>
+			<div>
+				<label>내용 :</label> <textarea name="content" rows="20" cols="50" th:text="${announcement.content}"></textarea>
+			</div>
+			<button type="submit">완료</button>
+		</div>
+		<input type="hidden" name="id" th:value="${announcement.id}">
+	</form>
+
+</body>
+</html>

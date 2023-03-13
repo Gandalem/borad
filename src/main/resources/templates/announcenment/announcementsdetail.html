@@ -3,6 +3,10 @@
 	<div class="container">
 	<h1 th:text="${announcement.subject}"></h1>
 	<div th:text="${announcement.content}"></div>
+	<div sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+	<a th:href="@{|/admin/delete/${announcement.id}|}"th:text="삭제"></a>
+	<a th:href="@{|/admin/update/${announcement.id}|}"th:text="수정"></a>
+	</div>
 	</div>
 </body>
 </html>

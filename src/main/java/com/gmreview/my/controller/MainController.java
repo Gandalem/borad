@@ -23,11 +23,11 @@ public class MainController {
 	private final AnnouncementService announcementService;
 	
 	@GetMapping("/")
-	public String index(@RequestParam(name = "page", defaultValue = "0") int pageNum,@RequestParam(name = "size", defaultValue = "5") int pageSize,
+	public String index(@RequestParam(name = "page", defaultValue = "0") int pageNum,@RequestParam(name = "size", defaultValue = "10") String kw,
             Model model) {
 		
-		Page<Announcement> announcementsList = announcementService.getAnnouncementsList(pageNum, pageSize);
-        model.addAttribute("announcements", announcementsList.getContent());
+		Page<Announcement> announcementsList = this.announcementService.mainAnnouncementsList(pageNum, kw);
+        model.addAttribute("announcements", announcementsList);
         model.addAttribute("paging", announcementsList);
 		
 		return "index.html";

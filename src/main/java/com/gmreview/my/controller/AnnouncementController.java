@@ -3,12 +3,17 @@ package com.gmreview.my.controller;
 import java.security.Principal;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gmreview.my.dto.AnnouncementsFormDto;
 import com.gmreview.my.entity.Announcement;
@@ -28,15 +33,15 @@ public class AnnouncementController {
 	
 	@GetMapping("/admin/announcementswrite")
 	public String write() {
-		return "announcementswrite";
+		return "announcenment/announcementswrite";
 	}
 	
-	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/admin/announcements/save")
 	public String annowrite(@Valid AnnouncementsFormDto announcementsFormDto, BindingResult bindingResult,Principal principal) {
 		
 		if (bindingResult.hasErrors()) {
-			return "announcementswrite";
+			return "announcenment/announcementswrite";
 		}
 
 		Members member = this.membersService.getName(principal.getName());
@@ -51,13 +56,15 @@ public class AnnouncementController {
 	
 	
 	@GetMapping("/announcementslist")
-	public String gmlist(Model model) {
+	public String gmlist(@RequestParam(name = "page", defaultValue = "0") int page,@RequestParam(name = "size", defaultValue = "") String kw,
+            Model model) {
 		
-		List<Announcement> announcements = this.announcementService.getList();
+		Page<Announcement> announcementsList = this.announcementService.getAnnouncementsList(page, kw);
 		
-		model.addAttribute("announcements",announcements);
+        model.addAttribute("paging", announcementsList);
+        model.addAttribute("kw", announcementsList);
 		
-		return "announcements.html";
+		return "announcenment/announcements";
 	}
 	
 	@GetMapping(value = "/detail/{id}")
@@ -67,12 +74,41 @@ public class AnnouncementController {
 		
 		model.addAttribute("announcement",announcement);
 		
-		return "announcementsdetail.html";
+		return "announcenment/announcementsdetail";
 	}
 	
 	@GetMapping(value = "/user/signup")
 	public String signup() {
 		return "gmsignup";
 	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/admin/delete/{id}")
+	public String delete(@PathVariable("id") int id) {
+	    // 해당 ID 값을 가진 게시글이 존재하는지 확인
+	    Announcement announcement = announcementService.getannoboard(id);
+	    // 게시글 삭제 수행
+	    announcementService.deleteAnnouncement(announcement.getId());
+	    return "redirect:/announcementslist";
+	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/admin/update/{id}")
+	public String edit(@PathVariable("id") int id, Model model) {
+	    // 해당 ID 값을 가진 게시글이 존재하는지 확인
+	    Announcement announcement = announcementService.getannoboard(id);
+	    // 게시글 정보를 모델에 담아서 수정 페이지로 전달
+	    model.addAttribute("announcement", announcement);
+	    return "announcenment/announcementsupdate";
+	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping("/admin/announcements/update")
+	public String update(@ModelAttribute("announcement") Announcement announcement) {
+	    // 게시글 업데이트 수행
+	    announcementService.updateAnnouncement(announcement.getId(),announcement.getSubject(),announcement.getContent());
+	    return "redirect:/announcementslist";
+	}
+
 	
 }
