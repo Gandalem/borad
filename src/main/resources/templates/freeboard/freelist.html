@@ -1,5 +1,5 @@
-<html layout:decorate="~{layout}">
-
+<html layout:decorate="~{layout}" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body layout:fragment="content">
 	<div class="container">
 		<table>
@@ -10,17 +10,16 @@
 				<th>작성일</th>
 				<th>조회수</th>
 			</tr>
-			<tr th:each="announcements, loop : ${paging}">
+			<tr th:each="freeboard, loop : ${paging}">
 				<!--
 			<td th:text="${paging.getTotalElements -(paging.number*paging.size)-loop.index}">번호</td>
 			-->
-				<td
-					th:text="${paging.getTotalElements -(paging.number*paging.size)-loop.index}">번호</td>
-				<td><a th:href="@{|detail/${announcements.id}|}"
-					th:text="${announcements.subject}">제목 </a></td>
-				<td th:text="${announcements.members.name}">작성자</td>
-				<td th:text="${#temporals.format(announcements.createDate, 'yyyy-MM-dd')}">작성일</td>
-				<td th:text="${announcements.views}"></td>
+				<td th:text="${paging.getTotalElements -(paging.number*paging.size)-loop.index}">번호</td>
+				<td><a th:href="@{|detail/${freeboard.id}|}"
+					th:text="${freeboard.subject}">제목 </a></td>
+				<td th:text="${freeboard.member.name}">작성자</td>
+				<td th:text="${#temporals.format(freeboard.regTime, 'yyyy-MM-dd')}"></td>
+				<td th:text="${freeboard.views}">작성자</td>
 			</tr>
 			<tr>
 				<td colspan="5">
@@ -55,13 +54,15 @@
 							</li>
 						</ul>
 					</div> <!-- 페이징 처리 끝 -->
-					<form th:action="@{/announcementslist}" method="get" id="searchForm">
+					<form th:action="@{/free/list}" method="get" id="searchForm">
 						<input type="hidden" id="page" name="page" th:value="${paging.number}">
 					</form>
 				</td>
 			</tr>
 		</table>
-
+		<div>
+			<a th:href="@{/free/write}">글쓰기</a>
+		</div>
 	</div>
 </body>
 <script layout:fragment="script" type='text/javascript'>

@@ -38,6 +38,9 @@ public class Announcement {
 	@Column(columnDefinition = "TEXT")
 	private String content;
 	
+	@Column(nullable = false)
+    private Integer views = 0;
+	
 	/*
 	 즉 createDate 처럼 대소문자 형태의 카멜케이스(Camel Case) 이름은
 	 create_date 처럼 모두 소문자로 변경되고 언더바(_)로 단어가 구분되어 실제 테이블 컬럼명이 된다.

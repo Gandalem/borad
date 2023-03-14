@@ -27,7 +27,7 @@ public class SecurityConfig {
                 .loginPage("/login")
                 .defaultSuccessUrl("/")
                 .usernameParameter("email")
-                .failureUrl("/login/error")
+                .failureUrl("/")
                 .and()
                 .logout()                                        
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
@@ -47,8 +47,8 @@ public class SecurityConfig {
         
         http.authorizeHttpRequests()
         		.requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
-                .requestMatchers("/", "/members/**", "/list/**", "/sign/**","/error/**","/announcementslist"
-                		,"/detail/**","/login").permitAll()
+                .requestMatchers("/", "/members/**", "/list/**", "/sign/**","/error/**","/announcementslist","/detail/**"
+                		,"/login/**","/gmlist","/free/**","/free/save","/answer/**").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()

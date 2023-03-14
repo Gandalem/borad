@@ -29,6 +29,22 @@
 		</tr>
 			
     	</table>
+    	<table class="freeboard-table">
+			<tr>
+				<td>자유게시판</td>
+    		</tr>
+			<tr th:each="freeBoard, loop : ${freeBoard}">
+				<!--
+			<td th:text="${paging.getTotalElements -(paging.number*paging.size)-loop.index}">번호</td>
+			-->
+			<td><a th:href="@{|free/detail/${freeBoard.id}|}"
+					th:text="${freeBoard.subject}">제목
+				</a>
+			</td>
+			<td th:text="${#temporals.format(freeBoard.regTime, 'yyyy-MM-dd')}">작성일</td>		
+		</tr>
+			
+    	</table>
     </div>
 
 	<script th:src="@{/js/slider.js}"></script>

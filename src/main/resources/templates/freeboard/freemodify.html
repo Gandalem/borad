@@ -1,0 +1,18 @@
+<html layout:decorate="~{layout}">
+<body layout:fragment="content">
+	<div class="container">
+		<h1>글쓰기</h1>
+		<form th:action="@{|/free/modify/${freeboard.id}|}" method="post">
+			<div>
+				<label>제목</label> <input type="text" name="subject" th:value="${freeboard.subject}">
+			</div>
+			<div>
+				<label>내용</label>
+				<textarea rows="20" cols="50" name="content" th:text="${freeboard.content}"></textarea>
+			</div>
+			<button type="submit">수정</button>
+		</form>
+
+	</div>
+</body>
+</html>

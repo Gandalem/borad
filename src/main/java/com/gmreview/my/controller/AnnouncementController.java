@@ -38,21 +38,24 @@ public class AnnouncementController {
 	
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/admin/announcements/save")
-	public String annowrite(@Valid AnnouncementsFormDto announcementsFormDto, BindingResult bindingResult,Principal principal) {
-		
-		if (bindingResult.hasErrors()) {
-			return "announcenment/announcementswrite";
-		}
+	public String annowrite(@Valid AnnouncementsFormDto announcementsFormDto, BindingResult bindingResult, Principal principal, Model model) {
+	    if (bindingResult.hasErrors()) {
+	        return "announcenment/announcementswrite";
+	    }
+	    try {
+	        Members member = this.membersService.getName(principal.getName());
+	        this.announcementService.save(announcementsFormDto.getSubject(), announcementsFormDto.getContent(), member);
+	    } catch (IllegalStateException e) {
+	        model.addAttribute("errorMessage", e.getMessage());
+	        return "announcenment/announcementswrite";
+	    }
 
-		Members member = this.membersService.getName(principal.getName());
+	    model.addAttribute("AnnouncementsFormDto", announcementsFormDto); // Model 객체에 추가해줍니다.
 
-		this.announcementService.save(announcementsFormDto.getSubject(), announcementsFormDto.getContent(), member);
-
-		// 값을 DB에 저장후 List페이지로 리다이렉트 (질문 목록으로 이동)
-
-		
-		return "redirect:/announcementslist";
+	    return "redirect:/announcementslist";
 	}
+	
+	
 	
 	
 	@GetMapping("/announcementslist")
@@ -71,7 +74,7 @@ public class AnnouncementController {
 	public String detail(Model model,@PathVariable("id")Integer id) {
 		
 		Announcement announcement = this.announcementService.getannoboard(id);
-		
+		announcementService.updateViews(id);
 		model.addAttribute("announcement",announcement);
 		
 		return "announcenment/announcementsdetail";

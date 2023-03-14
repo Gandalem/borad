@@ -24,6 +24,7 @@ import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -113,6 +114,11 @@ public class AnnouncementService {
 			throw new DataNotFoundException("Announcement not found");
 		}
 	}
+	
+	@Transactional
+    public void updateViews(Integer id) {
+		announcementRepository.updateViews(id);
+    }
 	
 //private Specification<Announcement> search(String kw){
 //		

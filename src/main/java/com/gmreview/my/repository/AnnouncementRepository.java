@@ -6,6 +6,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.gmreview.my.entity.Announcement;
 
@@ -20,6 +23,10 @@ public interface AnnouncementRepository extends JpaRepository<Announcement,Integ
 	Page<Announcement> findAll(Pageable pageable);
 	
 	Page<Announcement> findAll(Specification<Announcement> spec, Pageable pageable);
+	
+	@Modifying
+    @Query("UPDATE Announcement SET views = views+1 WHERE id = :id")
+    void updateViews(@Param("id") Integer id);
 	
 
 }

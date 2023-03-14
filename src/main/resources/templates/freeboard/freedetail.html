@@ -1,0 +1,18 @@
+<html layout:decorate="~{layout}">
+<body layout:fragment="content">
+	<div class="container">
+		<h1 th:text="${freeBoard.subject}"></h1>
+		<div th:text="${freeBoard.views}"></div>
+		<div th:text="${freeBoard.content}"></div>
+		<form th:action="@{|/answer/new/${freeBoard.id}|}" method="post">
+			<div>
+				<spna>댓글 : </spna>
+				<textarea type="text" name="content"></textarea>
+			</div>
+			<input type="submit" value="답변등록">
+		</form>
+		<a th:href="@{|/free/delete/${freeBoard.id}|}" th:text="삭제"></a> <a
+			th:href="@{|/free/modify/${freeBoard.id}|}" th:text="수정"></a>
+	</div>
+</body>
+</html>
