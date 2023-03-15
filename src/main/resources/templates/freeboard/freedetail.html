@@ -4,6 +4,11 @@
 		<h1 th:text="${freeBoard.subject}"></h1>
 		<div th:text="${freeBoard.views}"></div>
 		<div th:text="${freeBoard.content}"></div>
+
+
+		<a th:href="@{|/free/delete/${freeBoard.id}|}" th:text="삭제"></a> <a
+			th:href="@{|/free/modify/${freeBoard.id}|}" th:text="수정"></a>
+
 		<form th:action="@{|/answer/new/${freeBoard.id}|}" method="post">
 			<div>
 				<spna>댓글 : </spna>
@@ -11,8 +16,12 @@
 			</div>
 			<input type="submit" value="답변등록">
 		</form>
-		<a th:href="@{|/free/delete/${freeBoard.id}|}" th:text="삭제"></a> <a
-			th:href="@{|/free/modify/${freeBoard.id}|}" th:text="수정"></a>
-	</div>
+		<div th:text="|${#lists.size(freeBoard.answer)}개의 답변이 있습니다.|"></div>
+		<div th:each="answer : ${freeBoard.answer}">
+			<div>
+				<span th:text="${answer.member.name}"></span> 
+				<span th:text="${answer.content}"></span>
+			</div>
+		</div>
 </body>
 </html>

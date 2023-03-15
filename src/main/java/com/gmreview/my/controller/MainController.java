@@ -42,7 +42,7 @@ public class MainController {
 	
 	@GetMapping("/gmlist")
 	public String gmlist() {
-		return "gmlist";
+		return "gmlist/gmlist";
 	}
 	
 	

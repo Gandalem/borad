@@ -2,12 +2,13 @@ package com.gmreview.my.controller;
 
 import java.security.Principal;
 import java.util.Collections;
-import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,13 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.gmreview.my.dto.FreeBoardFormDto;
-import com.gmreview.my.entity.Announcement;
 import com.gmreview.my.entity.FreeBoard;
 import com.gmreview.my.entity.Members;
 import com.gmreview.my.service.FreeBoardService;
 import com.gmreview.my.service.MembersService;
 
-import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -52,10 +51,12 @@ public class FreeBoardController {
 	    return "freeboard/freelist";
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/write")
 	public String freewrite() {	
 		return "freeboard/freeboardwrite";
 	}
+	
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/save")
 	public String freesave(@Valid FreeBoardFormDto freeBoardFormDto , BindingResult bindingResult,Model model,Principal principal)  {

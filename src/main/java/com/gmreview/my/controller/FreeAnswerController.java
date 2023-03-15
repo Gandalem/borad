@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.gmreview.my.dto.FreeAnswerFromDto;
 import com.gmreview.my.dto.FreeBoardFormDto;
 import com.gmreview.my.entity.FreeAnswer;
 import com.gmreview.my.entity.FreeBoard;
@@ -32,7 +33,7 @@ public class FreeAnswerController {
 	
 	@PostMapping("/new/{id}")
 	public String create(@PathVariable("id") Integer id, Model model, Principal principal,
-			@Valid FreeBoardFormDto freeBoardFormDto,BindingResult bindingResult) {
+			@Valid FreeAnswerFromDto freeAnswerFromDto,BindingResult bindingResult) {
 		
 		FreeBoard freeBoard = this.freeBoardService.getFreeBoardById(id);
 		
@@ -43,9 +44,9 @@ public class FreeAnswerController {
 			return "freeboard/freedetail";
 		}
 		
-		FreeAnswer freeAnswer = this.freeAnswerService.create(freeBoard, freeBoardFormDto.getContent(), members);
+		this.freeAnswerService.create(freeBoard, freeAnswerFromDto.getContent(), members);
 		
-		return String.format("redirect:/free/detail/%s#freeAnswer_%s", freeAnswer.getFreeBoard(),freeAnswer.getId());
+		return String.format("redirect:/free/detail/%s",freeBoard.getId());
 	}
 	
 //	@PreAuthorize("isAuthenticated()")

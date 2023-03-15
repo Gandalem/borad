@@ -3,6 +3,7 @@ package com.gmreview.my.comfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,6 +17,7 @@ import com.gmreview.my.service.MembersService;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
 	@Autowired
@@ -48,7 +50,8 @@ public class SecurityConfig {
         http.authorizeHttpRequests()
         		.requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
                 .requestMatchers("/", "/members/**", "/list/**", "/sign/**","/error/**","/announcementslist","/detail/**"
-                		,"/login/**","/gmlist","/free/**","/free/save","/answer/**").permitAll()
+                		,"/login/**","/gmlist","/free/**","/answer/**").permitAll()
+                .requestMatchers("/free/write").authenticated()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()

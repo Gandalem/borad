@@ -2,64 +2,70 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body layout:fragment="content">
 	<div class="container">
-		<table>
-			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>작성일</th>
-				<th>조회수</th>
-			</tr>
-			<tr th:each="freeboard, loop : ${paging}">
-				<!--
+		<div>
+			<table>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>작성일</th>
+					<th>조회수</th>
+					<th></th>
+				</tr>
+				<tr th:each="freeboard, loop : ${paging}">
+					<!--
 			<td th:text="${paging.getTotalElements -(paging.number*paging.size)-loop.index}">번호</td>
 			-->
-				<td th:text="${paging.getTotalElements -(paging.number*paging.size)-loop.index}">번호</td>
-				<td><a th:href="@{|detail/${freeboard.id}|}"
-					th:text="${freeboard.subject}">제목 </a></td>
-				<td th:text="${freeboard.member.name}">작성자</td>
-				<td th:text="${#temporals.format(freeboard.regTime, 'yyyy-MM-dd')}"></td>
-				<td th:text="${freeboard.views}">작성자</td>
-			</tr>
-			<tr>
-				<td colspan="5">
-					<!-- 페이징 터리 시작 -->
-					<div th:if="${!paging.isEmpty()}" style="margin-left: 40%">
-						<ul class="pagination" style="list-style: none">
-							<!-- 이전페이지가 존재하지 않으면 이전에 링크를 비활성화 -->
-							<li class="page-item" style="float: left;"
-								th:classappend="${!paging.hasPrevious} ? 'disabled'">
-								<!-- paging.number : 현제페이지 --> <a class="page-link"
-								href="javascript:void(0)" th:data-page="${paging.number-1}">
-									<span>이전</span>
-							</a>
-							</li>
+					<td
+						th:text="${paging.getTotalElements -(paging.number*paging.size)-loop.index}">번호</td>
+					<td><a th:href="@{|detail/${freeboard.id}|}"
+						th:text="${freeboard.subject}">제목 </a></td>
+					<td th:text="${freeboard.member.name}">작성자</td>
+					<td th:text="${#temporals.format(freeboard.regTime, 'yyyy-MM-dd')}"></td>
+					<td th:text="${freeboard.views}">작성자</td>
+					<td style="color: red" th:text="|${#lists.size(freeboard.answer)}|"></td>
+				</tr>
+				<tr>
+					<td colspan="6">
+						<!-- 페이징 터리 시작 -->
+						<div th:if="${!paging.isEmpty()}" style="margin-left: 40%">
+							<ul class="pagination" style="list-style: none">
+								<!-- 이전페이지가 존재하지 않으면 이전에 링크를 비활성화 -->
+								<li class="page-item" style="float: left;"
+									th:classappend="${!paging.hasPrevious} ? 'disabled'">
+									<!-- paging.number : 현제페이지 --> <a class="page-link"
+									href="javascript:void(0)" th:data-page="${paging.number-1}">
+										<span>이전</span>
+								</a>
+								</li>
 
-							<!-- 첫 페이지 부터 마지막 페이지까지 루프를 돌려서 처리 -->
-							<li th:each="page : ${#numbers.sequence(0,paging.totalPages-1)}"
-								style="float: left;"
-								th:if="${page >= paging.number-1 and page <= paging.number+3}"
-								th:classappend="${page==paging.number} ? 'active'"
-								class="page=item"><a th:text="${page}" class="page-link"
-								href="javascript:void(0)" th:data-page="${page}"> </a></li>
+								<!-- 첫 페이지 부터 마지막 페이지까지 루프를 돌려서 처리 -->
+								<li th:each="page : ${#numbers.sequence(0,paging.totalPages-1)}"
+									style="float: left;"
+									th:if="${page >= paging.number-1 and page <= paging.number+3}"
+									th:classappend="${page==paging.number} ? 'active'"
+									class="page=item"><a th:text="${page}" class="page-link"
+									href="javascript:void(0)" th:data-page="${page}"> </a></li>
 
 
-							<!-- 다음을 처리하는 블락 -->
-							<li class="page-item" style="float: left;"
-								th:classappend="${!paging.hasNext} ? 'disabled'">
-								<!-- paging.number : 현제페이지 --> <a class="page-link"
-								href="javascript:void(0)" th:data-page="${paging.number+1}">
-									<span> 다음 </span>
-							</a>
-							</li>
-						</ul>
-					</div> <!-- 페이징 처리 끝 -->
-					<form th:action="@{/free/list}" method="get" id="searchForm">
-						<input type="hidden" id="page" name="page" th:value="${paging.number}">
-					</form>
-				</td>
-			</tr>
-		</table>
+								<!-- 다음을 처리하는 블락 -->
+								<li class="page-item" style="float: left;"
+									th:classappend="${!paging.hasNext} ? 'disabled'">
+									<!-- paging.number : 현제페이지 --> <a class="page-link"
+									href="javascript:void(0)" th:data-page="${paging.number+1}">
+										<span> 다음 </span>
+								</a>
+								</li>
+							</ul>
+						</div> <!-- 페이징 처리 끝 -->
+						<form th:action="@{/free/list}" method="get" id="searchForm">
+							<input type="hidden" id="page" name="page"
+								th:value="${paging.number}">
+						</form>
+					</td>
+				</tr>
+			</table>
+		</div>
 		<div>
 			<a th:href="@{/free/write}">글쓰기</a>
 		</div>

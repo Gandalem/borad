@@ -7,11 +7,14 @@
                 <td style="width: 30%;"><p class="title"><a th:href="@{/}">game review</a></p></td>
                 <td style="width: 30%;"></td>
                 <td style="width: 72px;">
-                <span sec:authorize="isAnonymous()">
-                <a th:href="@{/sign}">회원가입</a>
-                </span>
-                <span sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+                	<span sec:authorize="isAnonymous()">
+                		<a th:href="@{/sign}">회원가입</a>
+                	</span>
+                	<span sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
     					<a th:href="@{/admin/announcementswrite}">공지사항 작성</a>
+					</span>
+					 <span sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+    					<a th:href="@{/admin/gm/write}">게임리뷰 작성</a>
 					</span> 
                 </td>
                 <td style="width: 15%">
@@ -25,7 +28,7 @@
         					<div class="pop-container">
             					<div class="pop-conts">
                 					<!-- login -->
-                				<form role="form" method="post" action="/login">
+                				<form role="form" method="post" th:action="@{/login}">
                 					<table class="ctxt">
                 					<tr>
                 					<td class="id">아이디 : </td>
@@ -40,7 +43,6 @@
                 					<td><input type="password" name="password" placeholder="패스워드을 입력해주세요"></td>
                 					</tr>
                 					</table>
-                					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                 				</form>
                						<div class="btn-r">
                     					<a href="#" class="btn-layerClose">Close</a>
